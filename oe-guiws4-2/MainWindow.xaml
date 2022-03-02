@@ -5,8 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:oe_guiws4_2"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="My heroes" Height="450" Width="800">
     <Grid>
-
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <ListBox>
+            
+        </ListBox>
+        <StackPanel Grid.Column="1">
+            <Label Content="Price: 534 $" HorizontalContentAlignment="Center" FontSize="18" />
+            <Button Content="Add to army" Margin="10" Padding="10"/>
+            <Button Content="Remove from army" Margin="10" Padding="10"/>
+            <Button Content="Clear army" Margin="10" Padding="10"/>
+            <Button Content="Edit hero" Margin="10" Padding="10"/>
+            <StackPanel>
+                <Label Content="Power" FontSize="16"/>
+                <ProgressBar Maximum="10" Value="5" Height="10"/>
+                <Label Content="Speed" FontSize="16"/>
+                <ProgressBar Maximum="10" Value="5" Height="10"/>
+            </StackPanel>
+        </StackPanel>
+        <ListBox Grid.Column="2">
+            
+        </ListBox>
     </Grid>
 </Window>
