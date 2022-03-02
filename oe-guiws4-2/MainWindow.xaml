@@ -20,12 +20,12 @@
             <Button Content="Add to army" Margin="10" Padding="10"/>
             <Button Content="Remove from army" Margin="10" Padding="10"/>
             <Button Content="Clear army" Margin="10" Padding="10"/>
-            <Button Content="Edit hero" Margin="10" Padding="10"/>
+            <Button Content="Create hero" Margin="10" Padding="10"/>
             <StackPanel>
                 <Label Content="Power" FontSize="16"/>
-                <ProgressBar Maximum="10" Value="5" Height="10"/>
+                <ProgressBar Maximum="10" Value="5" Height="10" Margin="10"/>
                 <Label Content="Speed" FontSize="16"/>
-                <ProgressBar Maximum="10" Value="5" Height="10"/>
+                <ProgressBar Maximum="10" Value="5" Height="10" Margin="10"/>
             </StackPanel>
         </StackPanel>
         <ListBox Grid.Column="2">
