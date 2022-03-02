@@ -163,19 +163,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\IBT\\.nuget\\packages\\": {}
+    "C:\\Users\\matya\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\IBT\\Desktop\\oe-gui\\oe-guiws4-2\\oe-guiws4-2\\oe-guiws4-2.csproj",
+      "projectUniqueName": "C:\\Users\\matya\\Source\\Repos\\oe-guiws4-2\\oe-guiws4-2\\oe-guiws4-2.csproj",
       "projectName": "oe-guiws4-2",
-      "projectPath": "C:\\Users\\IBT\\Desktop\\oe-gui\\oe-guiws4-2\\oe-guiws4-2\\oe-guiws4-2.csproj",
-      "packagesPath": "C:\\Users\\IBT\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\IBT\\Desktop\\oe-gui\\oe-guiws4-2\\oe-guiws4-2\\obj\\",
+      "projectPath": "C:\\Users\\matya\\Source\\Repos\\oe-guiws4-2\\oe-guiws4-2\\oe-guiws4-2.csproj",
+      "packagesPath": "C:\\Users\\matya\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\matya\\Source\\Repos\\oe-guiws4-2\\oe-guiws4-2\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\IBT\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\matya\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -228,7 +228,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
       }
     }
   }
