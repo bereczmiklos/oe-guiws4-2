@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace oe_guiws4_2.Logic
 {
-    public class HeroLogic
+    public class HeroLogic : IHeroLogic
     {
         IList<Hero> heroesAvailable;
         IList<Hero> heroesInBattle;
