@@ -102,7 +102,9 @@ namespace oe_guiws4_2.ViewModels
         }
 
         //No param ctor:
-        public MainWindowViewModel() : this(IsInDesignMode ? null : Ioc.Default.GetService<IHeroLogic>())
+        //TODO:
+        //hidden dependency, resolution: IsInDesignMode ? null : Ioc.Default.GetService<IHeroLogic>()
+        public MainWindowViewModel() : this(new HeroLogic())
         {
 
         }
@@ -145,16 +147,16 @@ namespace oe_guiws4_2.ViewModels
             //heroLogic.SetUpCollections(Heroes,SelectedHeroes);
 
             ////Initializing commands:
-            //AddToBattleCommand = new RelayCommand(
-            //    () => heroLogic.AddHeroToBattle(SelectedFromHeroes),
-            //    () => SelectedHeroes != null);
+            AddToBattleCommand = new RelayCommand(
+                () => heroLogic.AddHeroToBattle(SelectedFromHeroes),
+                () => SelectedFromHeroes != null);
 
-            //RemoveFromBattleCommand = new RelayCommand(
-            //    () => heroLogic.RemoveHeroFromBattle(removeHeroFromBattle),
-            //    () => removeHeroFromBattle != null);
+            RemoveFromBattleCommand = new RelayCommand(
+                () => heroLogic.RemoveHeroFromBattle(SelectedFromHeroesInBattle),
+                () => SelectedFromHeroesInBattle != null);
 
-            //CreateHeroCommand = new RelayCommand(
-            //    () => heroLogic.ClearAllHeroFromBattle());
+            CreateHeroCommand = new RelayCommand(
+                () => heroLogic.ClearAllHeroFromBattle());
             ////TODO:
             ////CREATE HERO
 
