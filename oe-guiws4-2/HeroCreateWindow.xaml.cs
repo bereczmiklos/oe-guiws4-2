@@ -29,6 +29,11 @@ namespace oe_guiws4_2
             this.DataContext = hcwvm;
         }
 
+        private void Hcwvm_CreatedDone(object? sender, EventArgs e)
+        {
+            this.DialogResult = true;
+        }
+
         //<StackPanel Height = "80" HorizontalAlignment="Left">
         //    <RadioButton GroupName = "side" Content="Good" Margin="5"></RadioButton>
         //    <RadioButton GroupName = "side" Content="Evil" Margin="5"></RadioButton>
@@ -37,7 +42,14 @@ namespace oe_guiws4_2
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            foreach (var item in stack.Children)
+            {
+                if (item is TextBox tb)
+                {
+                    tb.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+                }
+            }
+            this.DialogResult = true;    
         }
     }
 }
