@@ -4,16 +4,42 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:oe_guiws4_2"
+        xmlns:vms="clr-namespace:oe_guiws4_2.ViewModels"
         mc:Ignorable="d"
         Title="My heroes" Height="450" Width="800">
+    <Window.DataContext>
+        <vms:MainWindowViewModel/>
+    </Window.DataContext>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
-        <ListBox>
-            
+        <ListBox Grid.Column="0" ItemsSource="{Binding Heroes}" SelectedItem="{Binding SelectedFromHeroes}" HorizontalAlignment="Stretch">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="Black" BorderThickness="1">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                            </Grid.RowDefinitions>
+                            <Label Content="{Binding Name}" FontSize="14" FontWeight="Bold"/>
+                            <Label Content="{Binding Power}" ContentStringFormat="Power: {0}" Grid.Row="1"/>
+                            <Label Content="{Binding Speed}" ContentStringFormat="Speed: {0}" Grid.Row="1" Grid.Column="1"/>
+                            <ProgressBar Maximum="10" Margin="10" Value="{Binding Power}" Grid.Row="2" Height="10"/>
+                            <ProgressBar Maximum="10" Margin="10" Value="{Binding Power}" Grid.Row="2" Grid.Column="1" Height="10"/>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
         </ListBox>
         <StackPanel Grid.Column="1">
             <Label Content="Price: 534 $" HorizontalContentAlignment="Center" FontSize="18" />
@@ -28,8 +54,16 @@
                 <ProgressBar Maximum="10" Value="5" Height="10" Margin="10"/>
             </StackPanel>
         </StackPanel>
-        <ListBox Grid.Column="2">
-            
+        <ListBox Grid.Column="2" ItemsSource="{Binding HeroesInBattle}" HorizontalAlignment="Stretch">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="{Binding Name}"/>
+                        <Label Content="{Binding Power}" ContentStringFormat=" -  {0}  -"/>
+                        <Label Content="{Binding Speed}" ContentStringFormat=" {0} "/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
         </ListBox>
     </Grid>
 </Window>
