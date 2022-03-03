@@ -17,9 +17,9 @@ namespace oe_guiws4_2.ViewModels
 {
     public class MainWindowViewModel : ObservableRecipient
     {
-        IHeroLogic heroLogic;
-        ObservableCollection<Hero> Heroes { get; set; }
-        ObservableCollection<Hero> SelectedHeroes { get; set; }
+        //IHeroLogic heroLogic;
+        public ObservableCollection<Hero> Heroes { get; set; }
+        public ObservableCollection<Hero> HeroesInBattle { get; set; }
 
         //Commands:
         public ICommand AddToBattleCommand { get; set; }
@@ -27,25 +27,34 @@ namespace oe_guiws4_2.ViewModels
         public ICommand CreateHeroCommand { get; set; }
         public ICommand ClearHeroesCommand { get; set; }
 
-        //Propfulls:
+        ////Propfulls:
         private Hero selectedFromHeroes;
 
         public Hero SelectedFromHeroes
         {
             get { return selectedFromHeroes; }
-            set 
+            set
             {
                 SetProperty(ref selectedFromHeroes, value);
                 (AddToBattleCommand as RelayCommand).NotifyCanExecuteChanged();
             }
         }
 
+        private Hero selectedFromHeroesInBattle;
+
+        public Hero SelectedFromHeroesInBattle
+        {
+            get { return selectedFromHeroesInBattle; }
+            set { selectedFromHeroesInBattle = value; }
+        }
+
+
         private Hero removeHeroFromBattle;
 
         public Hero RemoveHeroFromBattle
         {
             get { return removeHeroFromBattle; }
-            set 
+            set
             {
                 SetProperty(ref removeHeroFromBattle, value);
                 (RemoveFromBattleCommand as RelayCommand).NotifyCanExecuteChanged();
@@ -65,18 +74,21 @@ namespace oe_guiws4_2.ViewModels
         }
 
         //Logic suppplies:
-        public int SumPrice 
+        public int SumPrice
         {
-            get { return heroLogic.SumPrice; }
+            //get { return heroLogic.SumPrice; }
+            get { return 4444;  }
         }
 
         public double AvgPower
         {
-            get { return heroLogic.AvgPower; }
+            //get { return heroLogic.AvgPower; }
+            get { return 3.44; }
         }
         public double AvgSpeed
         {
-            get { return heroLogic.AvgSpeed; }
+            // get { return heroLogic.AvgSpeed; }
+            get { return 4.44; }
         }
 
         //Checking design mode:
@@ -96,12 +108,12 @@ namespace oe_guiws4_2.ViewModels
         }
 
         //Ctor:
-        public MainWindowViewModel(IHeroLogic? heroLogic)
+        public MainWindowViewModel(IHeroLogic heroLogic)
         {
             //Initializations:
-            this.heroLogic = heroLogic;
+            //this.heroLogic = heroLogic;
             Heroes = new ObservableCollection<Hero>();
-            SelectedHeroes = new ObservableCollection<Hero>();
+            HeroesInBattle = new ObservableCollection<Hero>();
 
             //Test data seed:
             Heroes.Add(new Hero()
@@ -127,32 +139,32 @@ namespace oe_guiws4_2.ViewModels
             });
 
             //Testing the battle side:
-            SelectedHeroes.Add(Heroes[0].GetCopy());
+            HeroesInBattle.Add(Heroes[0].GetCopy());
 
             //Setting up collections in logic:
-            heroLogic.SetUpCollections(Heroes,SelectedHeroes);
+            //heroLogic.SetUpCollections(Heroes,SelectedHeroes);
 
-            //Initializing commands:
-            AddToBattleCommand = new RelayCommand(
-                () => heroLogic.AddHeroToBattle(SelectedFromHeroes),
-                () => SelectedHeroes != null);
+            ////Initializing commands:
+            //AddToBattleCommand = new RelayCommand(
+            //    () => heroLogic.AddHeroToBattle(SelectedFromHeroes),
+            //    () => SelectedHeroes != null);
 
-            RemoveFromBattleCommand = new RelayCommand(
-                () => heroLogic.RemoveHeroFromBattle(removeHeroFromBattle),
-                () => removeHeroFromBattle != null);
+            //RemoveFromBattleCommand = new RelayCommand(
+            //    () => heroLogic.RemoveHeroFromBattle(removeHeroFromBattle),
+            //    () => removeHeroFromBattle != null);
 
-            CreateHeroCommand = new RelayCommand(
-                () => heroLogic.ClearAllHeroFromBattle());
-            //TODO:
-            //CREATE HERO
+            //CreateHeroCommand = new RelayCommand(
+            //    () => heroLogic.ClearAllHeroFromBattle());
+            ////TODO:
+            ////CREATE HERO
 
-            //Registering messenger for "HeroInfo"
-            Messenger.Register<MainWindowViewModel, string, string>(this, "HeroInfo", (recipient, msg) =>
-            {
-                OnPropertyChanged("SumPrice");
-                OnPropertyChanged("AvgPower");
-                OnPropertyChanged("AvgSpeed");
-            });
+            ////Registering messenger for "HeroInfo"
+            //Messenger.Register<MainWindowViewModel, string, string>(this, "HeroInfo", (recipient, msg) =>
+            //{
+            //    OnPropertyChanged("SumPrice");
+            //    OnPropertyChanged("AvgPower");
+            //    OnPropertyChanged("AvgSpeed");
+            //});
         }
     }
 }

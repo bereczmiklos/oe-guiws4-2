@@ -21,7 +21,7 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Border BorderBrush="Black" BorderThickness="1">
-                        <Grid>
+                        <Grid Width="267" >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*"/>
                                 <ColumnDefinition Width="1*"/>
@@ -42,19 +42,19 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <StackPanel Grid.Column="1">
-            <Label Content="Price: 534 $" HorizontalContentAlignment="Center" FontSize="18" />
-            <Button Content="Add to army" Margin="10" Padding="10"/>
-            <Button Content="Remove from army" Margin="10" Padding="10"/>
-            <Button Content="Clear army" Margin="10" Padding="10"/>
-            <Button Content="Create hero" Margin="10" Padding="10"/>
+            <Label Content="{Binding SumPrice}" ContentStringFormat="Price: {0}$" HorizontalContentAlignment="Center" FontSize="18" />
+            <Button Content="Add to army" Margin="10" Padding="10" Command="{Binding AddToBattleCommand}"/>
+            <Button Content="Remove from army" Margin="10" Padding="10" Command="{Binding RemoveFromBattleCommand}"/>
+            <Button Content="Clear army" Margin="10" Padding="10" Command="{Binding ClearHeroesCommand}"/>
+            <Button Content="Create hero" Margin="10" Padding="10" Command="{Binding CreateHeroCommand}"/>
             <StackPanel>
-                <Label Content="Power" FontSize="16"/>
-                <ProgressBar Maximum="10" Value="5" Height="10" Margin="10"/>
-                <Label Content="Speed" FontSize="16"/>
-                <ProgressBar Maximum="10" Value="5" Height="10" Margin="10"/>
+                <Label Content="{Binding AvgPower}" ContentStringFormat="Power: {0}"  FontSize="16"/>
+                <ProgressBar Maximum="10" Value="{Binding AvgPower, Mode=OneWay}" Height="10" Margin="10"/>
+                <Label Content="{Binding AvgSpeed}" ContentStringFormat="Speed: {0}" FontSize="16"/>
+                <ProgressBar Maximum="10" Value="{Binding AvgSpeed, Mode=OneWay}" Height="10" Margin="10"/>
             </StackPanel>
         </StackPanel>
-        <ListBox Grid.Column="2" ItemsSource="{Binding HeroesInBattle}" HorizontalAlignment="Stretch">
+        <ListBox Grid.Column="2" ItemsSource="{Binding HeroesInBattle}" SelectedItem="{Binding SelectedFromHeroesInBattle}" HorizontalAlignment="Stretch">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
