@@ -17,7 +17,7 @@ namespace oe_guiws4_2.ViewModels
 {
     public class MainWindowViewModel : ObservableRecipient
     {
-        //IHeroLogic heroLogic;
+        IHeroLogic heroLogic;
         public ObservableCollection<Hero> Heroes { get; set; }
         public ObservableCollection<Hero> HeroesInBattle { get; set; }
 
@@ -76,19 +76,16 @@ namespace oe_guiws4_2.ViewModels
         //Logic suppplies:
         public int SumPrice
         {
-            //get { return heroLogic.SumPrice; }
-            get { return 4444;  }
+            get { return heroLogic.SumPrice; }
         }
 
         public double AvgPower
         {
-            //get { return heroLogic.AvgPower; }
-            get { return 3.44; }
+            get { return heroLogic.AvgPower; }
         }
         public double AvgSpeed
         {
-            // get { return heroLogic.AvgSpeed; }
-            get { return 4.44; }
+            get { return heroLogic.AvgSpeed; }
         }
 
         //Checking design mode:
@@ -102,9 +99,8 @@ namespace oe_guiws4_2.ViewModels
         }
 
         //No param ctor:
-        //TODO:
-        //hidden dependency, resolution: IsInDesignMode ? null : Ioc.Default.GetService<IHeroLogic>()
-        public MainWindowViewModel() : this(new HeroLogic())
+        public MainWindowViewModel() 
+            :this(IsInDesignMode ? null : Ioc.Default.GetService<IHeroLogic>())
         {
 
         }
@@ -113,7 +109,7 @@ namespace oe_guiws4_2.ViewModels
         public MainWindowViewModel(IHeroLogic heroLogic)
         {
             //Initializations:
-            //this.heroLogic = heroLogic;
+            this.heroLogic = heroLogic;
             Heroes = new ObservableCollection<Hero>();
             HeroesInBattle = new ObservableCollection<Hero>();
 
@@ -144,7 +140,7 @@ namespace oe_guiws4_2.ViewModels
             HeroesInBattle.Add(Heroes[0].GetCopy());
 
             //Setting up collections in logic:
-            //heroLogic.SetUpCollections(Heroes,SelectedHeroes);
+            heroLogic.SetUpCollections(Heroes, HeroesInBattle);
 
             ////Initializing commands:
             AddToBattleCommand = new RelayCommand(
@@ -161,12 +157,12 @@ namespace oe_guiws4_2.ViewModels
             ////CREATE HERO
 
             ////Registering messenger for "HeroInfo"
-            //Messenger.Register<MainWindowViewModel, string, string>(this, "HeroInfo", (recipient, msg) =>
-            //{
-            //    OnPropertyChanged("SumPrice");
-            //    OnPropertyChanged("AvgPower");
-            //    OnPropertyChanged("AvgSpeed");
-            //});
+            Messenger.Register<MainWindowViewModel, string, string>(this, "HeroInfo", (recipient, msg) =>
+            {
+                OnPropertyChanged("SumPrice");
+                OnPropertyChanged("AvgPower");
+                OnPropertyChanged("AvgSpeed");
+            });
         }
     }
 }

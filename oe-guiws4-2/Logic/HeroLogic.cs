@@ -23,10 +23,6 @@ namespace oe_guiws4_2.Logic
             //service
         }
 
-        public HeroLogic()
-        {
-        }
-
         //AVG price (price := power*speed)
         public int SumPrice
         {

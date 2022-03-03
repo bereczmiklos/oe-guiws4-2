@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Toolkit.Mvvm.DependencyInjection;
+using Microsoft.Toolkit.Mvvm.Messaging;
+using oe_guiws4_2.Logic;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +17,14 @@ namespace oe_guiws4_2
     /// </summary>
     public partial class App : Application
     {
+        public App()
+        {
+            Ioc.Default.ConfigureServices(
+                new ServiceCollection()
+                    .AddSingleton<IHeroLogic, HeroLogic>()
+                    .AddSingleton<IMessenger>(WeakReferenceMessenger.Default)
+                    .BuildServiceProvider()
+                );
+        }
     }
 }
