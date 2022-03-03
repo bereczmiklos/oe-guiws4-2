@@ -1,4 +1,5 @@
 ﻿using oe_guiws4_2.Models;
+using oe_guiws4_2.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,20 @@ namespace oe_guiws4_2
         public HeroCreateWindow(Hero hero)
         {
             InitializeComponent();
+            var hcwvm = new HeroCreateWindowViewModel();
+            hcwvm.Setup(hero);
+            this.DataContext = hcwvm;
+        }
+
+        //<StackPanel Height = "80" HorizontalAlignment="Left">
+        //    <RadioButton GroupName = "side" Content="Good" Margin="5"></RadioButton>
+        //    <RadioButton GroupName = "side" Content="Evil" Margin="5"></RadioButton>
+        //    <RadioButton GroupName = "side" Content="Neutral" Margin="5"></RadioButton>
+        //</StackPanel>
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

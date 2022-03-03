@@ -6,15 +6,16 @@
         xmlns:local="clr-namespace:oe_guiws4_2"
         xmlns:enum="clr-namespace:oe_guiws4_2.Models"
         mc:Ignorable="d"
-        Title="Create a hero" Height="450" Width="800">
-    <StackPanel>
+        Title="Create a hero" Height="400" Width="400">
+    <StackPanel x:Name="stack">
         <Label Content="Name:" Background="LightBlue" FontSize="16" FontWeight="DemiBold" Height="30"/>
-        <TextBlock Height="30"/>
+        <TextBox Height="30" Text="{Binding Actual.Name, UpdateSourceTrigger=Explicit}"/>
         <Label Content="Power:" Background="LightBlue" FontSize="16" FontWeight="DemiBold"/>
-        <TextBlock Height="30"/>
+        <TextBox Height="30" Text="{Binding Actual.Power, UpdateSourceTrigger=Explicit}"/>
         <Label Content="Speed:" Background="LightBlue" FontSize="16" FontWeight="DemiBold"/>
-        <TextBlock Height="30"/>
+        <TextBox Height="30" Text="{Binding Actual.Speed, UpdateSourceTrigger=Explicit}"/>
         <Label Content="Side:" Background="LightBlue" FontSize="16" FontWeight="DemiBold"/>
-        <ListBox Height="30"/>
+        <TextBox Height="30" Text="{Binding Actual.Type, UpdateSourceTrigger=Explicit}"></TextBox>
+        <Button Content="Save" Height="30" Click="Button_Click" FontSize="16" FontWeight="DemiBold"></Button>
     </StackPanel>
 </Window>
