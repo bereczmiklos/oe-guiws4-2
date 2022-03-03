@@ -1,5 +1,6 @@
 ﻿using Microsoft.Toolkit.Mvvm.Messaging;
 using oe_guiws4_2.Models;
+using oe_guiws4_2.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,14 +14,15 @@ namespace oe_guiws4_2.Logic
         IList<Hero> heroesAvailable;
         IList<Hero> heroesInBattle;
         IMessenger messenger;
+        IHeroAdderService adderService;
 
         //TODO:
         //service class 
 
-        public HeroLogic(IMessenger mess)
+        public HeroLogic(IMessenger mess, IHeroAdderService adderService)
         {
             this.messenger = mess;
-            //service
+            this.adderService = adderService;
         }
 
         //AVG price (price := power*speed)
@@ -69,9 +71,9 @@ namespace oe_guiws4_2.Logic
         }
 
         //Create new hero
-        public void CreateHero()
+        public void CreateHero(Hero hero)
         {
-
+            adderService.Create(hero);
         }
     }
 }

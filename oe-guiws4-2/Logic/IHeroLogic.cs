@@ -11,7 +11,7 @@ namespace oe_guiws4_2.Logic
 
         void AddHeroToBattle(Hero hero);
         void ClearAllHeroFromBattle();
-        void CreateHero();
+        void CreateHero(Hero hero);
         void RemoveHeroFromBattle(Hero hero);
         void SetUpCollections(IList<Hero> heroes, IList<Hero> battleingHeroes);
     }
