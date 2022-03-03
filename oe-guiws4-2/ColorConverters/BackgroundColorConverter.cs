@@ -14,11 +14,11 @@ namespace oe_guiws4_2.ColorConverters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             string herotypes = value.ToString();
-            if (herotypes == "Good")
+            if (herotypes == "GOOD")
             {
                 return Brushes.LightGreen;
             }
-            if (herotypes == "Evil")
+            if (herotypes == "EVIL")
             {
                 return Brushes.Red;
             }

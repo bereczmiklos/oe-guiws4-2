@@ -14,11 +14,11 @@ namespace oe_guiws4_2.ColorConverters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             double number = double.Parse(value.ToString());
-            if (number <= 3)
+            if (number < 3)
             {
                 return Brushes.DarkRed;
             }
-            else if (number <= 7)
+            else if (number < 7)
             {
                 return Brushes.Yellow;
             }
