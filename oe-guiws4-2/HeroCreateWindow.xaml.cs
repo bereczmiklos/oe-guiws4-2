@@ -1,4 +1,5 @@
-﻿using System;
+﻿using oe_guiws4_2.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,7 +20,7 @@ namespace oe_guiws4_2
     /// </summary>
     public partial class HeroCreateWindow : Window
     {
-        public HeroCreateWindow()
+        public HeroCreateWindow(Hero hero)
         {
             InitializeComponent();
         }
