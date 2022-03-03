@@ -67,5 +67,11 @@ namespace oe_guiws4_2.Logic
             heroesInBattle.Clear();
             messenger.Send("Heroes cleared", "HeroInfo");
         }
+
+        //Create new hero
+        public void CreateHero()
+        {
+
+        }
     }
 }

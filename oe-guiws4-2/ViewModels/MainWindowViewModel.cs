@@ -18,8 +18,8 @@ namespace oe_guiws4_2.ViewModels
     public class MainWindowViewModel : ObservableRecipient
     {
         IHeroLogic heroLogic;
-        public ObservableCollection<Hero> Heroes { get; set; }
-        public ObservableCollection<Hero> HeroesInBattle { get; set; }
+        public ObservableCollection<Hero> Barrack { get; set; }
+        public ObservableCollection<Hero> Army { get; set; }
 
         //Commands:
         public ICommand AddToBattleCommand { get; set; }
@@ -28,24 +28,28 @@ namespace oe_guiws4_2.ViewModels
         public ICommand ClearHeroesCommand { get; set; }
 
         ////Propfulls:
-        private Hero selectedFromHeroes;
+        private Hero selectedFromBarrack;
 
-        public Hero SelectedFromHeroes
+        public Hero SelectedFromBarrack
         {
-            get { return selectedFromHeroes; }
+            get { return selectedFromBarrack; }
             set
             {
-                SetProperty(ref selectedFromHeroes, value);
+                SetProperty(ref selectedFromBarrack, value);
                 (AddToBattleCommand as RelayCommand).NotifyCanExecuteChanged();
             }
         }
 
-        private Hero selectedFromHeroesInBattle;
+        private Hero selectedFromArmy;
 
-        public Hero SelectedFromHeroesInBattle
+        public Hero SelectedFromArmy
         {
-            get { return selectedFromHeroesInBattle; }
-            set { selectedFromHeroesInBattle = value; }
+            get { return selectedFromArmy; }
+            set
+            {
+                SetProperty(ref selectedFromArmy, value);
+                (RemoveFromBattleCommand as RelayCommand).NotifyCanExecuteChanged();
+            }
         }
 
 
@@ -110,25 +114,25 @@ namespace oe_guiws4_2.ViewModels
         {
             //Initializations:
             this.heroLogic = heroLogic;
-            Heroes = new ObservableCollection<Hero>();
-            HeroesInBattle = new ObservableCollection<Hero>();
+            Barrack = new ObservableCollection<Hero>();
+            Army = new ObservableCollection<Hero>();
 
             //Test data seed:
-            Heroes.Add(new Hero()
+            Barrack.Add(new Hero()
             {
                 Name = "Thanos",
                 Type = HeroTypes.EVIL,
                 Power = 9,
                 Speed = 1
             });
-            Heroes.Add(new Hero()
+            Barrack.Add(new Hero()
             {
                 Name = "IronMan",
                 Type = HeroTypes.GOOD,
                 Power = 6,
                 Speed = 7
             });
-            Heroes.Add(new Hero()
+            Barrack.Add(new Hero()
             {
                 Name = "Matyi",
                 Type = HeroTypes.NEUTRAL,
@@ -137,26 +141,28 @@ namespace oe_guiws4_2.ViewModels
             });
 
             //Testing the battle side:
-            HeroesInBattle.Add(Heroes[0].GetCopy());
+            Army.Add(Barrack[0].GetCopy());
 
             //Setting up collections in logic:
-            heroLogic.SetUpCollections(Heroes, HeroesInBattle);
+            heroLogic.SetUpCollections(Barrack, Army);
 
-            ////Initializing commands:
+            //Initializing commands:
             AddToBattleCommand = new RelayCommand(
-                () => heroLogic.AddHeroToBattle(SelectedFromHeroes),
-                () => SelectedFromHeroes != null);
+                () => heroLogic.AddHeroToBattle(SelectedFromBarrack),
+                () => selectedFromBarrack != null);
 
             RemoveFromBattleCommand = new RelayCommand(
-                () => heroLogic.RemoveHeroFromBattle(SelectedFromHeroesInBattle),
-                () => SelectedFromHeroesInBattle != null);
+                () => heroLogic.RemoveHeroFromBattle(SelectedFromArmy),
+                () => SelectedFromArmy != null);
+
+            ClearHeroesCommand = new RelayCommand(
+                () => heroLogic.ClearAllHeroFromBattle(),
+                () => Army.Count != 0);
 
             CreateHeroCommand = new RelayCommand(
-                () => heroLogic.ClearAllHeroFromBattle());
-            ////TODO:
-            ////CREATE HERO
+                 () => heroLogic.CreateHero());
 
-            ////Registering messenger for "HeroInfo"
+            //Registering messenger for "HeroInfo"
             Messenger.Register<MainWindowViewModel, string, string>(this, "HeroInfo", (recipient, msg) =>
             {
                 OnPropertyChanged("SumPrice");
