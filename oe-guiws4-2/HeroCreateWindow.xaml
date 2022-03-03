@@ -16,5 +16,8 @@
         <TextBlock Height="30"/>
         <Label Content="Side:" Background="LightBlue" FontSize="16" FontWeight="DemiBold"/>
         <ListBox Height="30"/>
+        <RadioButton>
+            
+        </RadioButton>
     </StackPanel>
 </Window>
