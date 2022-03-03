@@ -2,6 +2,7 @@
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Messaging;
 using oe_guiws4_2.Logic;
+using oe_guiws4_2.Services;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -22,6 +23,7 @@ namespace oe_guiws4_2
             Ioc.Default.ConfigureServices(
                 new ServiceCollection()
                     .AddSingleton<IHeroLogic, HeroLogic>()
+                    .AddSingleton<IHeroAdderService, HeroAdderViaWindow>()
                     .AddSingleton<IMessenger>(WeakReferenceMessenger.Default)
                     .BuildServiceProvider()
                 );

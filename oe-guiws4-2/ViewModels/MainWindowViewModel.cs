@@ -160,7 +160,8 @@ namespace oe_guiws4_2.ViewModels
                 () => Army.Count != 0);
 
             CreateHeroCommand = new RelayCommand(
-                 () => heroLogic.CreateHero());
+                 () => heroLogic.CreateHero(CreateHero)
+                 );
 
             //Registering messenger for "HeroInfo"
             Messenger.Register<MainWindowViewModel, string, string>(this, "HeroInfo", (recipient, msg) =>
