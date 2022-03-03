@@ -62,9 +62,9 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <Label Content="{Binding Name}"/>
-                        <Label Content="{Binding Power}" ContentStringFormat=" -  {0}  -"/>
-                        <Label Content="{Binding Speed}" ContentStringFormat=" {0} "/>
+                        <Label Content="{Binding Name}" FontWeight="Bold" />
+                        <Label Content="{Binding Power}" ContentStringFormat="power: {0}" HorizontalAlignment="Center"/>
+                        <Label Content="{Binding Speed}" ContentStringFormat="speed: {0}" HorizontalAlignment="Left"/>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
