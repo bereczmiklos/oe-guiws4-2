@@ -27,6 +27,10 @@ namespace oe_guiws4_2
             var hcwvm = new HeroCreateWindowViewModel();
             hcwvm.Setup(hero);
             this.DataContext = hcwvm;
+
+            heroSide.Children.Add(new RadioButton() { GroupName = "side", Content = HeroTypes.GOOD, Margin = new Thickness(5) } );
+            heroSide.Children.Add(new RadioButton() { GroupName = "side", Content = HeroTypes.EVIL, Margin = new Thickness(5) } );
+            heroSide.Children.Add(new RadioButton() { GroupName = "side", Content = HeroTypes.NEUTRAL, Margin = new Thickness(5) } );
         }
 
         private void Hcwvm_CreatedDone(object? sender, EventArgs e)

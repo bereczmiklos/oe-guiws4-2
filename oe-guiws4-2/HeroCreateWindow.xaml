@@ -15,7 +15,9 @@
         <Label Content="Speed:" Background="LightBlue" FontSize="16" FontWeight="DemiBold"/>
         <TextBox Height="30" Text="{Binding Actual.Speed, UpdateSourceTrigger=Explicit}"/>
         <Label Content="Side:" Background="LightBlue" FontSize="16" FontWeight="DemiBold"/>
-        <TextBox Height="30" Text="{Binding Actual.Type, UpdateSourceTrigger=Explicit}"></TextBox>
+        <StackPanel x:Name="heroSide" Height="80">
+            
+        </StackPanel>
         <Button Content="Save" Height="30" Click="Button_Click" FontSize="16" FontWeight="DemiBold"></Button>
     </StackPanel>
 </Window>
